@@ -110,6 +110,23 @@ input.submit:hover{
 	background:rgba(250,128,114,0.8);
 }
 
+a.aTitle{
+	cursor: pointer;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: Segoe ui light;
+    margin: 0;
+    padding: 0;
+    background:none;
+    display:inline;
+    text-decoration:none;
+}
+
+a.aTitle:hover{
+	color:skyblue;
+}
+
 /* #########################  NOTRE BOOTSTRAP ######################### */
 
 .row{
