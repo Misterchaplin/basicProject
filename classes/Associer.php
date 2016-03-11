@@ -3,13 +3,13 @@ class Associer{
 	
 	/**
 	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="idUtilisateur",className="Utilisateur",nullable=true)
+	 * @JoinColumn(name="IDUTILISATEUR",className="Utilisateur",nullable=true)
 	 */
 	private $utilisateur;
 	
 	/**
 	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="idProjet",className="Projet",nullable=true)
+	 * @JoinColumn(name="IDPROJET",className="Projet",nullable=true)
 	 */
 	private $projet;
 	

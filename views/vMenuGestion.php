@@ -8,7 +8,7 @@
 						<a href="<?php echo $GLOBALS["siteUrl"]?>manager/addProject">Ajouter projet</a>
 					</li>
 					<li>
-						<a href="<?php echo $GLOBALS["siteUrl"]?>manager/myManager">Mon gestionnaire</a>
+						<a href="<?php echo $GLOBALS["siteUrl"]?>gestion">Mon gestionnaire</a>
 					</li>
 				<li>
 			</ul>

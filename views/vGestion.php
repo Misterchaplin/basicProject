@@ -10,10 +10,10 @@
 		<tbody>
 		<?php
 		foreach ($data as $projets):?>
-			<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projets->getId();?>'>
-				<td><?php echo $projets->getUtilisateur()->getPseudo();?></td>
-				<td><?php echo $projets->getDesignation();?></td>
-				<td><?php echo $projets->getDatecreation();?></td>
+			<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projets->getProjet()->getId();?>'>
+				<td><?php echo $projets->getProjet()->getUtilisateur()->getPseudo();?></td>
+				<td><?php echo $projets->getProjet()->getDesignation();?></td>
+				<td><?php echo $projets->getProjet()->getDatecreation();?></td>
 			</tr>
 		<?php endforeach;?>
 		</tbody>

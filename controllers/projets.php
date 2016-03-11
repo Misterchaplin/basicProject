@@ -12,8 +12,12 @@ class projets extends BaseController{
 		}
 		else {
 			$this->loadView("vHeader");
-			$aProject = DAO::getOne("Projet", $param);
-			$this->loadView("vInfoProjet", $aProject);
+			$aProjet = DAO::getOne("Projet", $param);
+			$listTaches = DAO::getAll("Tache", "idprojet=".$param);
+			$this->loadView("vInfoProjet", array("tasks" => $listTaches,
+												 "project" => $aProjet
+											)
+							);
 			$this->loadView("vFooter");
 		}
 	}

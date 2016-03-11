@@ -46,6 +46,14 @@ class Projet extends \BaseObject{
 		$this->utilisateur = $utilisateur;
 		return $this;
 	}
+	public function getTaches() {
+		return $this->taches;
+	}
+	public function setTaches($taches) {
+		$this->taches = $taches;
+		return $this;
+	}
+	
 	
 	
 	

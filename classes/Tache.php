@@ -4,12 +4,12 @@ class Tache extends \BaseObject{
 
 	/**
 	 * @ManyToOne
-	 * @JoinColumn(name="idEtat",className="etat")
+	 * @JoinColumn(name="IDETAT",className="etat")
 	 */
 	private $etat;
 	/**
 	 * @ManyToOne
-	 * @JoinColumn(name="idProjet",className="projet")
+	 * @JoinColumn(name="IDPROJET",className="projet")
 	 */
 	private $projet;
 	private $designation;
