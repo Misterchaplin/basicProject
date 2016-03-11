@@ -54,6 +54,10 @@ class Projet extends \BaseObject{
 		return $this;
 	}
 	
+	public function toString(){
+		return $this->designation;
+	}
+	
 	
 	
 	

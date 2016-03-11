@@ -9,8 +9,10 @@ class manager extends BaseController{
 		else {
 			$this->loadView("vHeader");
 			$this->loadView("vMenuGestion");
-			$listProject = DAO::getAll("Associer", "idutilisateur=".$_SESSION['membre']->getId());
-			$this->loadView("vGestion", $listProject);
+			$listProjects = DAO::getAll("Associer", "idutilisateur=".$_SESSION['membre']->getId());
+			$listProjectsResponsable = DAO::getAll("Projet", "idutilisateur=".$_SESSION['membre']->getId());
+			$lstData = array("lstProjects" => $listProjects, "lstProjectsResponsable" => $listProjectsResponsable);
+			$this->loadView("vGestion", $lstData);
 			commonUtils::loadJs("jsManager");
 			$this->loadView("vFooter");
 		}

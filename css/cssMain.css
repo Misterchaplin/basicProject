@@ -127,7 +127,38 @@ a.aTitle:hover{
 	color:skyblue;
 }
 
+div.divTitle{
+	padding:15px;
+	background:white;
+	color:skyblue;
+}
+
+div.divTitle span{
+	float:right;
+}
+
+div.divTitle h1{
+	display:inline-block;
+}
+
 /* #########################  NOTRE BOOTSTRAP ######################### */
+
+.panel-group{
+	margin:0;
+}
+
+.panel-default>.panel-heading{
+	    padding: 0;
+    color: white;
+}
+
+.panel-default>.panel-heading a{
+	text-decoration:none;
+}
+
+.panel-default>.panel-heading a:hover{
+	background:rgba(135,206,235,0.8);
+}
 
 .row{
 	margin : 0;

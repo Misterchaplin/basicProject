@@ -43,6 +43,10 @@ class Utilisateur extends \BaseObject{
 		return $this;
 	}
 	
+	public function toString(){
+		return $this->nom." ".$this->prenom;
+	}
+	
 	
 	
 	
