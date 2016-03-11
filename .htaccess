@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /basicProject1/
+RewriteBase /basicProject/
 
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{HTTP_ACCEPT} !(.*images.*)

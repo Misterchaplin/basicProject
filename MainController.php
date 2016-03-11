@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-$GLOBALS["siteUrl"]="/basicProject1/";
+$GLOBALS["siteUrl"]="/basicProject/";
 ?>
 
 <?php
