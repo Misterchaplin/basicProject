@@ -39,7 +39,7 @@ require_once 'technics/Gui.php';
 		<?php
 			}
 		?>
-		<h1>Basic Project</h1>
+		<h1><a class="aTitle" href="<?php echo $GLOBALS["siteUrl"]?>">Basic Project</a></h1>
 		<h3>A simple way to manage Projects & Tasks</h3>			
 	</header>
 <!-- div contneu principal -->
