@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /basicProject1/
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{HTTP_ACCEPT} !(.*images.*)
+RewriteRule ^(.*)$ MainController.php?c=$1 [L]

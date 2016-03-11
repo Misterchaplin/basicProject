@@ -1,0 +1,137 @@
+/* #########################  start : FLASH ######################### */
+
+.fSuccess{
+	color:#95b500;;
+}
+
+.flash{
+	z-index:1000;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    font-weight:bold;
+    background:white;
+}
+
+.fError{
+	color:Salmon;;
+}
+
+/* #########################  end : FLASH ######################### */
+
+body{
+	font-family:Segoe UI;
+	margin:0;
+	width:50%;
+	margin:auto ;
+}
+
+h1, h2, h3, p{
+	margin:0;
+}
+
+#mainContainer{
+	background:whitesmoke;
+}
+
+header, #footer{
+	padding:15px;
+	color:white;
+	background:#333;
+}
+
+h1{
+	letter-spacing: 2px;
+}
+
+header{
+	border-bottom:5px solid skyblue;
+}
+
+#footer{
+	border-top:5px solid skyblue;
+	text-align:center;
+}
+
+header h3, #footer h3{
+	color:skyblue;
+}
+
+form{
+	padding:35px;
+	width:50%;
+	margin:auto;
+}
+
+input, a, select{
+	font-size:14px;
+	font-family:Segoe ui;
+	margin-bottom:15px;
+	padding:15px;
+	box-sizing:border-box;
+	width:100%;
+	display:block;
+	outline-color:rgba(135,206,235,1);
+}
+
+input.submit, a{
+	cursor:pointer;
+	background:rgba(135,206,235,1);
+	border:none;
+	color:white;
+	font-size:17px;
+	font-weight:bold;
+	margin:0;
+}
+
+input.submit:hover{
+	background:rgba(135,206,235,0.8);
+}
+
+#formRelancer{
+	float:right;
+	padding:0;
+	width:auto;
+	margin:auto;
+}
+
+#formRelancer input{
+	font-size:17px;
+	color:white;
+	padding:15px;
+	outline:none;
+	cursor:pointer;
+	background:Salmon;
+	margin-right:35px;
+	border:none;
+}
+
+#formRelancer input:hover{
+	background:rgba(250,128,114,0.8);
+}
+
+/* #########################  NOTRE BOOTSTRAP ######################### */
+
+.row{
+	margin : 0;
+}
+
+.table, .navbar{
+	margin-bottom:0;
+}
+
+.table-hover > tbody > tr:hover{
+	background-color: #FFF;
+	cursor: pointer;
+	color:royalblue;
+}
+
+#bs-example-navbar-collapse-7 ul li a{
+	background-color: #FFF;
+}
+
+#bs-example-navbar-collapse-7 ul li a:hover{
+	background-color: skyblue;
+	color: white;
+} 
+/* #########################  end : BOOTSTRAP ######################### */
