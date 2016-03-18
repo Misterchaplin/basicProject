@@ -2,14 +2,14 @@
 class Realiser {
 	
 	/**
-	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="idUtilisateur",className="Utilisateur",nullable=true)
+	 * @ManyToOne
+	 * @JoinColumn(name="IDUTILISATEUR",className="Utilisateur")
 	 */
 	private $utilisateur;
 	
 	/**
-	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="idTache",className="Tache",nullable=true)
+	 * @ManyToOne
+	 * @JoinColumn(name="IDTACHE",className="Tache")
 	 */
 	private $tache;
 	

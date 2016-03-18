@@ -114,37 +114,27 @@ class commonUtils {
 		return $time; // on retourne l'heure
 	}
 	
-	public static function translateDate($dateTimeParam){
-		$moisEng = array('January', 'February', 'Mars', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'); // mois en anglais
-		$moisFr = array('Janvier', 'Février', 'Mars', 'Avril', 'Mais', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'); // mois en frcs
-		$dateTime = new DateTime($dateTimeParam);
-		$dateActuelle = date("Y-m-d"); // on récupère la date actuelle
-		$dateHier = strftime("%Y-%m-%d", mktime(0, 0, 0, date('m'), date('d')-1, date('y')));
-		if($dateTime->format("Y-m-d") == $dateActuelle){ // si la date param = date actuelle => aujourd'hui
-			$date="aujourd'hui";
-		}else{ // sinon
-			if($dateHier == $dateTime->format("Y-m-d")){ // si la date param = date d'hier
-				$date="hier";
-			}else{
-				$mois=$dateTime->format('F'); // on isole le mois
-				$flag=null; // flag de while a null
-				while($flag == null){ // tant que flag = null
-					for($i = 0; $i < count($moisEng)-1; $i++){ // pour i allant de 0, i plus petit que taille moisEng-1, incrémentation ++
-						if($mois==$moisEng[$i]){ // si $mois = mois dans moisEng
-							$flag=$i; // $ flag prend la valeur de $i
-							$mois=$moisFr[$i]; // $moi prend la valeur de $moisFr[$i]
-						}
-					}
+// permet de traduire la date en fr
+	public static function translateDate($date, $format = null, $firstLetter = null, $secondLetter  = null){
+		if($format == null){
+			$format = '%d %B %Y';
+		}
+		setlocale(LC_TIME, 'fra_fra');
+		$dateFr = utf8_encode(strftime($format,strtotime($date)));
+		// si il faut ne prendre que certains caractères
+		if($firstLetter > -1 && $secondLetter > -1)
+		{	
+			$arrayChar = array("é", "û", "juin", "juil", "août", "sept", "mars");
+			foreach($arrayChar as $char)
+			{
+				if(strstr($dateFr, $char))
+				{
+					$secondLetter = $secondLetter + 1;
 				}
-				$jour=$dateTime->format('d'); // on isole le jour
-				if($jour[0] == "0"){  // si 05 alors (by example)
-					$jour=$jour[1]; // on supprime le 0 devant 5
-				}
-				$annee=	$dateTime->format('Y'); // on isole l'annee
-				$date="le ".$jour." ".$mois." ".$annee;
-			}	
+			}
+			$dateFr = substr($dateFr, $firstLetter, $secondLetter);
 		}
 		
-		return $date;
+		return $dateFr;
 	}
 }

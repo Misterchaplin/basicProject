@@ -31,7 +31,7 @@ h1, h2, h3, p{
 }
 
 #mainContainer{
-	background:whitesmoke;
+	//background:whitesmoke;
 }
 
 header, #footer{
@@ -133,12 +133,30 @@ div.divTitle{
 	color:skyblue;
 }
 
-div.divTitle span{
+div.divTitle span.floatRight{
 	float:right;
+    color:#333;
 }
 
 div.divTitle h1{
 	display:inline-block;
+}
+
+a.btnAction{
+	display:inline;
+	font-size:inherit;
+	font-weight:normal;
+	padding:10px;
+	border-radius:3px;
+	background:skyblue;
+}
+
+a.btnAction:hover{
+	background:steelblue;
+}
+
+a.btnAction:hover{
+	color:white;
 }
 
 /* #########################  NOTRE BOOTSTRAP ######################### */
@@ -181,5 +199,54 @@ div.divTitle h1{
 #bs-example-navbar-collapse-7 ul li a:hover{
 	background-color: skyblue;
 	color: white;
-} 
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	vertical-align:middle;
+	padding: 15px;
+}
+
+.panel-body{
+	padding:0;
+}
+
+a:hover{
+	text-decoration:none;
+	color:inherit;
+}
 /* #########################  end : BOOTSTRAP ######################### */
+
+/* #########################  start: accordion color ######################### */
+
+.naAccordion{
+	background:salmon;
+}
+
+.panel-default>.panel-heading a.naAccordion:hover{
+	background:rgba(250,128,114,0.8);
+}
+
+.afAccordion{
+	background:coral;
+}
+
+.panel-default>.panel-heading a.afAccordion:hover{
+	background:rgba(255,127,80,0.8);
+}
+
+.ecAccordion{
+	background:teal;
+}
+
+.panel-default>.panel-heading a.ecAccordion:hover{
+	background:rgba(0,128,128,0.8);
+}
+
+.teAccordion{
+	background:yellowgreen;
+}
+
+.panel-default>.panel-heading a.teAccordion:hover{
+	background:rgba(154,205,50,0.8);
+}
+/* #########################  end: accordion color ######################### */
