@@ -31,7 +31,7 @@ $lstLies = $data['lstProjects']
 						<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getId();?>'>
 							<td><?php echo $projet->getDesignation();?></td>
 							<td><?php echo $projet->getUtilisateur()?></td>
-							<td><?php echo $projet->getDatecreation();?></td>
+							<td><?php echo commonUtils::translateDate($projet->getDatecreation());?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
@@ -69,7 +69,7 @@ $lstLies = $data['lstProjects']
 						<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getProjet()->getId();?>'>							
 							<td><?php echo $projet->getProjet()->getDesignation();?></td>
 							<td><?php echo $projet->getProjet()->getUtilisateur()?></td>
-							<td><?php echo $projet->getProjet()->getDatecreation();?></td>
+							<td><?php echo commonUtils::translateDate($projet->getProjet()->getDatecreation());?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
