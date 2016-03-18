@@ -1,5 +1,5 @@
 <?php
-class Realiser {
+class Realiser extends BaseObject{
 	
 	/**
 	 * @ManyToOne
