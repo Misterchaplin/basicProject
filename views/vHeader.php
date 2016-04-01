@@ -41,20 +41,6 @@ require_once 'technics/Gui.php';
 		?>
 		<h1><a class="aTitle" href="<?php echo $GLOBALS["siteUrl"]?>">Easy Project</a></h1>
 		<h3>A simple way to manage Projects & Tasks</h3>
-		<?php 
-			if(!empty($data))
-			{
-				foreach($data as $link)
-				{
-					
-				}
-		?>
-				<div>
-				
-				</div>
-		<?php 
-			}
-		?>
 	</header>
 <!-- div contneu principal -->
 <div id="mainContainer">

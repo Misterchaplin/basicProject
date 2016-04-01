@@ -12,11 +12,6 @@ class Tache extends BaseObject{
 	 * @JoinColumn(name="IDPROJET",className="Projet")
 	 */
 	private $projet;
-	/**
-	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="IDTACHE",className="Realiser")
-	 */
-	private $realiser;
 	private $designation;
 	private $description;
 
@@ -25,8 +20,8 @@ class Tache extends BaseObject{
 	 */
 	public function __construct($id = null) {
 		// TODO: Auto-generated method stub
-
 	}
+	
 	public function getEtat() {
 		return $this->etat;
 	}
@@ -55,12 +50,11 @@ class Tache extends BaseObject{
 		$this->description = $description;
 		return $this;
 	}
-	public function getRealiser() {
-		return $this->realiser;
-	}
-	public function setRealiser($realiser) {
-		$this->realiser = $realiser;
-		return $this;
+	
+	public function getRealiser()
+	{
+		$realiser = DAO::getOne("Realiser", "IDTACHE = ".parent::getId());
+		return $realiser;
 	}
 	
 	

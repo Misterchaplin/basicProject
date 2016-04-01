@@ -60,18 +60,4 @@ class accueil extends BaseController {
 		commonUtils::backTo();
 	}
 	
-	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
-	/** :::::::::::::::::::::::::: SI MEMBRE = CONNECTÉ ::::::::::::::::::::::::::::::::::: **/
-	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
-	
-	public function formulaireAjoutProjet(){
-		$this->loadView("vHeader");
-		if(empty($_SESSION['membre'])){
-			$this->loadView("form/vLogin");
-		}else{
-			$this->loadView("form/vCreateProject");
-		}
-		$this->loadView("vFooter");
-	}
-	
 }

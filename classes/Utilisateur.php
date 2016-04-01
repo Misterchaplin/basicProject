@@ -6,10 +6,6 @@ class Utilisateur extends \BaseObject{
 	private $nom;
 	private $prenom;
 	private $mdp;
-	/**
-	 * @OneToMany(mappedBy="Utilisateur", className="Realiser")
-	 */
-	private $realiser;
 
 	/* (non-PHPdoc)
 	 * @see BaseObject::__construct()
@@ -49,13 +45,6 @@ class Utilisateur extends \BaseObject{
 	
 	public function toString(){
 		return $this->nom." ".$this->prenom;
-	}
-	public function getRealiser() {
-		return $this->realiser;
-	}
-	public function setRealiser($realiser) {
-		$this->realiser = $realiser;
-		return $this;
 	}
 	
 	

@@ -1,5 +1,7 @@
 <?php
 	commonUtils::flash("resultAttribution");
+	commonUtils::flash("resultAjoutProjet");
+	commonUtils::flash("resultAjoutTache");
 	$obj = $data['project'];
 	$na = $data["na"];
 	$af = $data['af'];
@@ -8,7 +10,24 @@
 ?>
 <div class="divTitle">
 	<h1><?php echo $obj;?></h1>
-	<span class="floatRight"><?php echo commonUtils::translateDate($obj->getDatecreation());?><br>Dirigé par <?php echo $obj->getUtilisateur();?></span>
+</div>
+<div class="divTitle">
+	<?php 
+	if($obj->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+	{
+	?>
+		<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/add.png" alt="ICON ADD TACHE"/>
+		<a href="<?php echo $GLOBALS["siteUrl"]?>taches/formulaireAjoutTache/<?php echo $obj->getId();?>">
+			<span>Ajouter une tâche</span>
+		</a>
+		<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/add.png" alt="ICON ADD Taskeur"/>
+		<a href="<?php echo $GLOBALS["siteUrl"]?>taches/formulaireAjoutTaskeur">
+			<span>Ajouter un taskeur</span>
+		</a>
+	<?php 
+	}
+	?>
+	<span class="floatRight black"><?php echo $obj->getDatecreation()."<br>"."Responsable : ".$obj->getUtilisateur();?></span>
 </div>
 <div class="alert alert-info">
 	<?php echo $obj->getDescription();?>
@@ -35,7 +54,7 @@
 						<tr>							
 							<th>Libellé</th>
 							<th>Description</th>
-							<th>Taskeur</th>
+							<th>S'appropirer</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,7 +63,7 @@
 						<tr>
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
-							<td><a class="btnAction" href="<?php echo $GLOBALS['siteUrl']?>projets/attribution/<?php echo $item->getId();?>/<?php echo $obj->getId();?>">Je m'en occupe</a>
+							<td><a class="btnAction" href="<?php echo $GLOBALS['siteUrl']?>projets/attribution/<?php echo $item->getId();?>/<?php echo $obj->getId();?>/1">Je m'en occupe</a>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
@@ -76,6 +95,7 @@
 						<th>Libellé</th>
 						<th>Description</th>
 						<th>Taskeur</th>
+						<th>Commencer</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -84,6 +104,11 @@
 					<tr>
 						<td><?php echo $item->getDesignation();?></td>
 						<td><?php echo $item->getDescription()?></td>
+						<td><?php echo $item->getRealiser()->getUtilisateur();?></td>
+						<td>
+						<?php if($_SESSION['membre']->getId() == $item->getRealiser()->getUtilisateur()->getId()){?>
+							<a class="btnAction" href="<?php echo $GLOBALS['siteUrl']?>projets/attribution/<?php echo $item->getId();?>/<?php echo $obj->getId();?>/2">Je la commence</a></td>
+						<?php }?>
 					</tr>
 					<?php endforeach;?>
 				</tbody>
@@ -113,7 +138,7 @@
 							<th>Libellé</th>
 							<th>Description</th>
 							<th>Taskeur</th>
-							<th></th>
+							<th>Terminer</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -122,7 +147,8 @@
 						<tr>
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
-							<td></td>
+							<td><?php echo $item->getRealiser()->getUtilisateur();?></td>
+							<td><a class="btnAction" href="<?php echo $GLOBALS['siteUrl']?>projets/attribution/<?php echo $item->getId();?>/<?php echo $obj->getId();?>/3">Je l'ai terminée</a></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
@@ -160,6 +186,7 @@
 						<tr>
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
+							<td><?php echo $item->getRealiser()->getUtilisateur();?></td>
 						</tr>
 					<?php endforeach;?>
 					</tbody>
