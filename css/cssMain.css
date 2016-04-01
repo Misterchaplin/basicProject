@@ -11,6 +11,7 @@
     box-sizing: border-box;
     font-weight:bold;
     background:white;
+    margin-bottom: 15px;
 }
 
 .fError{
@@ -24,6 +25,7 @@ body{
 	margin:0;
 	width:50%;
 	margin:auto ;
+	background:url('../img/pattern/graphy.png');
 }
 
 h1, h2, h3, p{
@@ -31,7 +33,9 @@ h1, h2, h3, p{
 }
 
 #mainContainer{
-	//background:whitesmoke;
+    //background: rgba(255,255,255,0.5);
+    padding:15px;
+    background:whitesmoke;
 }
 
 header, #footer{
@@ -63,7 +67,7 @@ form{
 	margin:auto;
 }
 
-input, a, select{
+input, select{
 	font-size:14px;
 	font-family:Segoe ui;
 	margin-bottom:15px;
@@ -74,7 +78,7 @@ input, a, select{
 	outline-color:rgba(135,206,235,1);
 }
 
-input.submit, a{
+input.submit{
 	cursor:pointer;
 	background:rgba(135,206,235,1);
 	border:none;
@@ -111,16 +115,9 @@ input.submit:hover{
 }
 
 a.aTitle{
-	cursor: pointer;
     color: white;
-    font-size: 36px;
     font-weight: bold;
     font-family: Segoe ui light;
-    margin: 0;
-    padding: 0;
-    background:none;
-    display:inline;
-    text-decoration:none;
 }
 
 a.aTitle:hover{
@@ -133,9 +130,9 @@ div.divTitle{
 	color:skyblue;
 }
 
-div.divTitle span.floatRight{
+span.floatRight{
 	float:right;
-    color:#333;
+    color:white;
 }
 
 div.divTitle h1{
@@ -159,14 +156,47 @@ a.btnAction:hover{
 	color:white;
 }
 
+a.aTitleAccordion{
+padding:15px;
+display:block;
+}
+
+a.defaultAccordion{
+	background:skyblue;	
+}
+
+
 /* #########################  NOTRE BOOTSTRAP ######################### */
+
+.table>thead>tr>th{
+	border:none;
+}
+
+.table>thead>tr{
+	background:powderblue;
+}
+
+.table{
+	margin:0;
+}
+
+.navbar{
+	min-height:0;
+	padding:15px;
+}
+
+.navbar ul li a{
+	display:inline-block;
+	padding:0;
+	margin-left:10px;
+}
 
 .panel-group{
 	margin:0;
 }
 
 .panel-default>.panel-heading{
-	    padding: 0;
+    padding: 0;
     color: white;
 }
 
@@ -182,23 +212,25 @@ a.btnAction:hover{
 	margin : 0;
 }
 
-.table, .navbar{
-	margin-bottom:0;
+.table-hover > tbody > tr td:first-of-type{
+	border:none;
+	border-left:5px solid;
+	border-color:transparent;
+}
+
+.table-hover > tbody > tr:hover td:first-of-type{
+	border-color:yellowgreen;
 }
 
 .table-hover > tbody > tr:hover{
-	background-color: #FFF;
-	cursor: pointer;
-	color:royalblue;
+	cursor:pointer;
+	background:white;
+	color:yellowgreen;
 }
 
-#bs-example-navbar-collapse-7 ul li a{
-	background-color: #FFF;
-}
 
 #bs-example-navbar-collapse-7 ul li a:hover{
-	background-color: skyblue;
-	color: white;
+	color:yellowgreen;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{

@@ -1,14 +1,19 @@
 <?php
 class accueil extends BaseController {
 	
-	public function index() {
+	public function index() {		
+		$this->loadView("vHeader");
 		if(empty($_SESSION['membre'])){
-			$this->loadView("vHeader");
-			$this->loadView("vLogin");
-			$this->loadView("vFooter");
+			$this->loadView("form/vLogin");
 		}else{
-			commonUtils::backTo("manager");
+			$this->loadView("page/vMenuMembre");
+			$listProjects = DAO::getAll("Associer", "idutilisateur=".$_SESSION['membre']->getId());
+			$listProjectsResponsable = DAO::getAll("Projet", "idutilisateur=".$_SESSION['membre']->getId());
+			$lstData = array("lstProjects" => $listProjects, "lstProjectsResponsable" => $listProjectsResponsable);
+			$this->loadView("page/vAccueilMembre", $lstData);
+			commonUtils::loadJs("jsMain");
 		}
+		$this->loadView("vFooter");
 	}
 	
 	private function errorFlashCreator($pseudo = null, $passwd = null, $msgError){
@@ -31,7 +36,7 @@ class accueil extends BaseController {
 			if($user!=null){// si connexion réussie
 				$_SESSION['membre'] = $user; // stocakge du membre en session
 				commonUtils::flash( "resultConnexion", "Bienvenue ".$user->getNom()." ".$user->getPrenom(), "flash fSuccess"); // création d'un message flash de succes
-				commonUtils::backTo("manager");
+				commonUtils::backTo();
 			}
 			else{
 				$this->errorFlashCreator($pseudo, $passwd, "Echec de l'identification");
@@ -53,6 +58,20 @@ class accueil extends BaseController {
 		session_destroy();
 		// redirection
 		commonUtils::backTo();
+	}
+	
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	/** :::::::::::::::::::::::::: SI MEMBRE = CONNECTÉ ::::::::::::::::::::::::::::::::::: **/
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	
+	public function formulaireAjoutProjet(){
+		$this->loadView("vHeader");
+		if(empty($_SESSION['membre'])){
+			$this->loadView("form/vLogin");
+		}else{
+			$this->loadView("form/vCreateProject");
+		}
+		$this->loadView("vFooter");
 	}
 	
 }

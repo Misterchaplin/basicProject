@@ -3,10 +3,11 @@
 	<div class="navbar-header">
 		<div id="bs-example-navbar-collapse-7">
 			<ul class="nav navbar-nav">
-				<li class="active">
-					<li>
-						<a href="<?php echo $GLOBALS["siteUrl"]?>manager/addProject">Ajouter projet</a>
-					</li>
+				<li>
+					<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/add.png" alt="ICON ADD PROJET"/>
+					<a href="<?php echo $GLOBALS["siteUrl"]?>accueil/formulaireAjoutProjet">
+						<span>Ajouter projet</span>
+					</a>
 				<li>
 			</ul>
 		</div>

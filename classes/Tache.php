@@ -1,17 +1,22 @@
 <?php
 
-class Tache extends \BaseObject{
+class Tache extends BaseObject{
 
 	/**
-	 * @ManyToOne
-	 * @JoinColumn(name="IDETAT",className="etat")
+	 * @ManyToOne 
+	 * @JoinColumn(name="IDETAT",className="Etat")
 	 */
 	private $etat;
 	/**
 	 * @ManyToOne
-	 * @JoinColumn(name="IDPROJET",className="projet")
+	 * @JoinColumn(name="IDPROJET",className="Projet")
 	 */
 	private $projet;
+	/**
+	 * @ManyToOne(mappedBy)
+	 * @JoinColumn(name="IDTACHE",className="Realiser")
+	 */
+	private $realiser;
 	private $designation;
 	private $description;
 
@@ -50,6 +55,14 @@ class Tache extends \BaseObject{
 		$this->description = $description;
 		return $this;
 	}
+	public function getRealiser() {
+		return $this->realiser;
+	}
+	public function setRealiser($realiser) {
+		$this->realiser = $realiser;
+		return $this;
+	}
+	
 	
 	
 	

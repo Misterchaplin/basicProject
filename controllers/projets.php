@@ -14,6 +14,7 @@ class projets extends BaseController{
 			$this->loadView("vHeader");
 			$aProjet = DAO::getOne("Projet", $param);
 			$listTaches = DAO::getAll("Tache", "idprojet=".$param);
+			var_dump($listTaches);
 			$te = array();
 			$af = array();
 			$ec = array();
@@ -35,7 +36,7 @@ class projets extends BaseController{
 						break;
 				}
 			}			
-			$this->loadView("vInfoProjet", array("af" => $af,
+			$this->loadView("page/vInfoProjet", array("af" => $af,
 												"te" => $te,
 												"ec" => $ec,
 												"na" => $na,

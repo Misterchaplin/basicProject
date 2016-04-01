@@ -10,8 +10,9 @@ $lstLies = $data['lstProjects']
 		  <div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="headingOne">
 		      <h4 class="panel-title">
-		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		        <a class="aTitleAccordion defaultAccordion" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 		          Mes Projets
+		          <span class="floatRight">[ <?php echo sizeof($lstResponsable);?> ]</span>
 		        </a>
 		      </h4>
 		    </div>
@@ -48,8 +49,9 @@ $lstLies = $data['lstProjects']
 			<div class="panel panel-default">
 		    <div class="panel-heading" role="tab" id="headingTwo">
 		      <h4 class="panel-title">
-		        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+		        <a  class="aTitleAccordion defaultAccordion collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 		          Mes Projets liés
+		          <span class="floatRight">[ <?php echo sizeof($lstLies);?> ]</span>
 		        </a>
 		      </h4>
 		    </div>
