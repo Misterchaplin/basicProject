@@ -33,8 +33,8 @@ require_once 'technics/Gui.php';
 			if(!empty($_SESSION['membre']))
 			{
 		?>
-				<form id="formRelancer" action="<?php echo $GLOBALS["siteUrl"]?>accueil/deconnexionMembre" method="post">
-				<input type="submit" value="Se déconnecter"/>
+				<form id="formRelancer" action="<?php echo $GLOBALS["siteUrl"]?>accueil/deconnexionMembre" method="post">					
+					<input type="submit" value="<?php echo $_SESSION['membre'];?>"/>
 				</form>
 		<?php
 			}

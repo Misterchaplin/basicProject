@@ -32,6 +32,14 @@ h1, h2, h3, p{
 	margin:0;
 }
 
+.center{
+	text-align:center;
+}
+
+.espaced{
+	margin-bottom:15px;
+}
+
 #mainContainer{
     //background: rgba(255,255,255,0.5);
     padding:15px;
@@ -41,7 +49,7 @@ h1, h2, h3, p{
 header, #footer{
 	padding:15px;
 	color:white;
-	background:#333;
+	background: darkslategrey;
 }
 
 h1{
@@ -148,8 +156,9 @@ a.btnAction{
 	font-size:inherit;
 	font-weight:normal;
 	padding:10px;
+	color:white;
 	border-radius:3px;
-	background:skyblue;
+	background:#337ab7;
 }
 
 a.btnAction:hover{
@@ -172,12 +181,39 @@ a.defaultAccordion{
 
 /* #########################  NOTRE BOOTSTRAP ######################### */
 
+.alert-info{
+    border-radius: 0 0 15px 15px;
+    background: darkslategrey;
+    border: none;
+    color: white;
+}
+
+.nav li{
+	border-right:1px solid grey;
+	padding-right:15px;
+	padding-left:15px;
+}
+
+.nav li:first-of-type{
+	padding-left:0px;
+}
+
+.nav li:last-of-type{
+	border:none;
+	padding-right:0px;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body{
+	border:none;
+}
+
 .table>thead>tr>th{
 	border:none;
 }
 
 .table>thead>tr{
-	background:powderblue;
+	background:teal;
+	color:white;
 }
 
 .table{
@@ -193,6 +229,10 @@ a.defaultAccordion{
 	display:inline-block;
 	padding:0;
 	margin-left:10px;
+}
+
+.width20{
+	width:20%;
 }
 
 .panel-group{
@@ -216,16 +256,14 @@ a.defaultAccordion{
 	margin : 0;
 }
 
-.table-hover > tbody > tr:hover td:first-of-type{
-	border-color:yellowgreen;
+table > tbody > tr:hover{
+	//background:whitesmoke;
 }
 
 .table-hover > tbody > tr:hover{
+	color:teal;
 	cursor:pointer;
-	background:white;
-	color:yellowgreen;
 }
-
 
 #bs-example-navbar-collapse-7 ul li a:hover{
 	color:yellowgreen;
@@ -249,11 +287,11 @@ a:hover{
 /* #########################  start: accordion color ######################### */
 
 .naAccordion{
-	background:salmon;
+	background:crimson;
 }
 
 .panel-default>.panel-heading a.naAccordion:hover{
-	background:rgba(250,128,114,0.8);
+	background:rgba(237,20,61,0.8);
 }
 
 .afAccordion{
@@ -265,11 +303,11 @@ a:hover{
 }
 
 .ecAccordion{
-	background:teal;
+	background:gold;
 }
 
 .panel-default>.panel-heading a.ecAccordion:hover{
-	background:rgba(0,128,128,0.8);
+	background:rgba(255,215,0,0.8);
 }
 
 .teAccordion{

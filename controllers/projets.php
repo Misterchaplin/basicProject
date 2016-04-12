@@ -124,4 +124,90 @@ class projets extends BaseController{
 			$this->loadView("vFooter");
 		}		
 	}
+	
+	
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	/** :::::::::::::::::::::::::: AJOUT TASKER ::::::::::::::::::::::::::::::::::: **/
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	
+	public function formulaireAjoutTaskeur($idProjet){
+		if(empty($_SESSION['membre']) || $idProjet == null)
+		{
+			commonUtils::backTo();
+		}
+		else
+		{
+			$projet = DAO::getOne("Projet", "id = ".$idProjet);
+			if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+			{
+				$lstFinalUsers = array();
+				$usersAsso = DAO::getAll("Associer", "IDPROJET = ".$idProjet);
+				$users = DAO::getAll("Utilisateur", "id <> ".$_SESSION['membre']->getId());
+				foreach($users as $userNotA)
+				{
+					$everIn = false;
+					foreach($usersAsso as $userA)
+					{
+						if($userA->getUtilisateur()->getId() == $userNotA->getId())
+						{
+							$everIn = true;
+							break;
+						}
+					}
+					if(!$everIn)
+					{
+						// ajout de l'utilisateur dans la liste de retour
+						array_push($lstFinalUsers, $userNotA);
+					}
+				}
+				$this->loadView("vHeader");
+				$this->loadView("form/vCreateTasker", array("lstUsers" => $lstFinalUsers, "idProjet" => $idProjet));
+				$this->loadView("vFooter");
+			}
+			else
+			{
+				commonUtils::flash( "resultAjoutTaskeur", "C'est pas bien Mr Brutus !", "flash fError"); // création d'un message flash d'échec
+				commonUtils::backTo();
+			}
+		}
+	}
+	
+	public function ajouterTaskeur($idProjet)
+	{
+		if($_POST['userSelected'] != null && $idProjet != null)
+		{
+			
+			try
+			{
+				$projet = DAO::getOne("Projet", "id = ".$idProjet);
+				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+				{
+					//$user = DAO::getOne("Utilisateur", "id = ".$_POST['userSelected']);
+					$newObjAssocier = new Associer($projet->getId(),$_POST['userSelected']);
+					var_dump($newObjAssocier);
+					$insert = DAO::insert($newObjAssocier);
+					echo "lol";
+					var_dump($newObjAssocier);
+					die();
+					commonUtils::flash( "resultAjoutTaskeur", "Tâskeur ajouté au projet !", "flash fSuccess"); // création d'un message flash de réussite
+					commonUtils::backTo("projets/afficher/".$idProjet);
+				}
+				else
+				{
+					commonUtils::flash( "resultAjoutTaskeur", "C'est pas bien Mr Brutus !", "flash fError"); // création d'un message flash d'échec
+					commonUtils::backTo();
+				}
+			}
+			catch(Exception $e)
+			{
+				commonUtils::flash( "resultAjoutTaskeur", "Erreur lors de l'ajout du taskeur !", "flash fError"); // création d'un message flash d'échec
+				commonUtils::backTo("projets/formulaireAjoutTaskeur/".$idProjet);
+			}
+		}
+		else
+		{
+			commonUtils::flash( "resultAjoutTaskeur", "Donnees manquantes !", "flash fError"); // création d'un message flash d'échec
+			commonUtils::backTo("projets/formulaireAjoutTaskeur/".$idProjet);
+		}
+	}
 }

@@ -1,17 +1,33 @@
 <?php
-class Associer{
+class Associer extends BaseObject{
+	
+	/**
+	 * @Id
+	 */
+	private $IDUTILISATEUR;
+	
+	/**
+	 * @Id
+	 */
+	private $IDPROJET;
 	
 	/**
 	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="IDUTILISATEUR",className="Utilisateur",nullable=true)
+	 * @JoinColumn(name="IDUTILISATEUR",className="utilisateur")
 	 */
 	private $utilisateur;
 	
 	/**
 	 * @ManyToOne(mappedBy)
-	 * @JoinColumn(name="IDPROJET",className="Projet",nullable=true)
+	 * @JoinColumn(name="IDPROJET",className="projet")
 	 */
 	private $projet;
+	
+	
+	public function __construct($idproj = "", $iduser = ""){
+		$this->IDUTILISATEUR = $iduser;
+		$this->IDPROJET = $idproj;
+	}
 	
 	public function getUtilisateur() {
 		return $this->utilisateur;
@@ -27,7 +43,22 @@ class Associer{
 		$this->projet = $projet;
 		return $this;
 	}
+	public function getIDUTILISATEUR() {
+		return $this->IDUTILISATEUR;
+	}
+	public function setIDUTILISATEUR($IDUTILISATEUR) {
+		$this->IDUTILISATEUR = $IDUTILISATEUR;
+		return $this;
+	}
+	public function getIDPROJET() {
+		return $this->IDPROJET;
+	}
+	public function setIDPROJET($IDPROJET) {
+		$this->IDPROJET = $IDPROJET;
+		return $this;
+	}
 	
+
 	
 	
 	

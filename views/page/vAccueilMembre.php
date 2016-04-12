@@ -1,5 +1,6 @@
 <?php
 commonUtils::flash("resultAjoutTache");
+commonUtils::flash("resultAjoutTaskeur");
 $lstResponsable = $data['lstProjectsResponsable'];
 $lstLies = $data['lstProjects']
 ?>
@@ -17,7 +18,7 @@ $lstLies = $data['lstProjects']
 		        </a>
 		      </h4>
 		    </div>
-		    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+		    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 		      <div class="panel-body">
 		      <table class="table table-hover">
 					<thead>

@@ -1,4 +1,29 @@
 <?php commonUtils::flash("resultAjoutProjet");?>
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<div id="bs-example-navbar-collapse-7">
+			<ul class="nav navbar-nav">
+				<li>
+					<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/home.png" alt="ICON BACK"/>
+					<a href="<?php echo $GLOBALS["siteUrl"]?>">
+						<span>Accueil</span>
+					</a>
+				</li>
+				<li>
+					<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/infos.png" alt="ICON GUIDE"/>
+					<a href="<?php echo $GLOBALS["siteUrl"]?>accueil/guide">
+						<span>Guide de gestion</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="divTitle">
+	<h1>Création d'un nouveau projet</h1>
+</div>
+
 <form action="<?php echo $GLOBALS['siteUrl']?>projets/ajouterProjet" id="frmAddProject" name="frmAddProject" method="post">
 	<div class="form-group">
 		<!-- Les champs IdUtilisateur et DateCreation sont ajoutés automatiquement par le code -->

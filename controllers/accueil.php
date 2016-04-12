@@ -23,6 +23,18 @@ class accueil extends BaseController {
 		commonUtils::backTo(); // redirection vers le formulaire de connexion
 	}
 	
+	// charge la vue Guide
+	public function guide()
+	{
+		if(empty($_SESSION['membre'])){
+			commonUtils::backTo();
+		}else{
+			$this->loadView("vHeader");
+			$this->loadView("page/vGuide");
+			$this->loadView("vFooter");
+		}		
+	}
+	
 	/** :::::::::::::::::::::::::: CONNEXION DU MEMBRE ::::::::::::::::::::::::::::::::::: **/
 	
 	
