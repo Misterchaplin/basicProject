@@ -23,6 +23,16 @@ class accueil extends BaseController {
 		commonUtils::backTo(); // redirection vers le formulaire de connexion
 	}
 	
+	private function errorFlashCreatorRegister($pseudo = null, $surname = null, $firstname = null, $passwd = null, $passwdConfirm = null, $msgError){
+		commonUtils::flash("resultInscription", $msgError, "flash fError"); // création d'un message flash d'échec
+		commonUtils::flash("pseudoInscription", $pseudo);
+		commonUtils::flash("surnameInscription", $surname);
+		commonUtils::flash("firstnameInscription", $firstname);
+		commonUtils::flash("passwdInscription", $passwd);
+		commonUtils::flash("passwdConfirmInscription", $passwdConfirm);
+		commonUtils::backTo("accueil/inscription"); // redirection vers le formulaire d'inscription
+	}
+	
 	// charge la vue Guide
 	public function guide()
 	{
@@ -72,4 +82,65 @@ class accueil extends BaseController {
 		commonUtils::backTo();
 	}
 	
+	/** :::::::::::::::::::::::::: INSCRIPTION DU MEMBRE ::::::::::::::::::::::::::::::::::: **/
+	
+	public function inscription(){
+		$this->loadView("vHeader");
+		$this->loadView("form/vRegister");
+		$this->loadView("vFooter");
+	}
+	
+	public function inscrireMembre(){
+		var_dump($_POST);
+		$pseudo = $_POST['pseudo'];
+		$surname = $_POST['surname'];
+		$firstname = $_POST['firstname'];
+		$passwd = $_POST['passwd'];
+		$passwdConfirm = $_POST['passwdConfirm'];
+		$data =array($pseudo, $surname,	$firstname,	$passwd, $passwdConfirm);
+		$checkRegister = true;
+		//var_dump(count($data));
+		for($i=0; $i<5; $i++){
+			if(strlen($data[$i])==0){
+				$checkRegister=false;
+			}
+		}
+		
+		if($checkRegister){
+			if(strlen($pseudo) > 50 && strlen($passwd) > 20 && 
+				strlen($surname) > 150 && strlen($firstname) > 150){
+				$checkRegister=false;
+			}
+			
+			if($passwd != $passwdConfirm){
+				$checkRegister=false;
+			}
+			
+			$conditions = "pseudo='".$pseudo."'";
+			$userFind=DAO::getAll("Utilisateur", $conditions);
+			if(count($userFind) > 0){
+				$this->errorFlashCreatorRegister($pseudo, $surname, $firstname, $passwd, $passwdConfirm, "Ce pseudo existe déjà");
+			}
+			
+			if($checkRegister == false){
+				$this->errorFlashCreatorRegister($pseudo, $surname, $firstname, $passwd, $passwdConfirm, "Echec de l'inscription");
+			}else{
+				$user = new Utilisateur();
+				$user->setPseudo($pseudo);
+				$user->setNom($surname);
+				$user->setPrenom($firstname);
+				$user->setMdp(hash('sha512',$passwd));
+				$insertUser = DAO::insert($user);
+				if($insertUser){
+					$_SESSION['membre'] = $user; // stocakge du membre en session
+					commonUtils::flash( "resultConnexion", "Bienvenue ".$user->getNom()." ".$user->getPrenom(), "flash fSuccess"); // création d'un message flash de succes
+					commonUtils::backTo();
+				}else{
+					$this->errorFlashCreatorRegister($pseudo, $surname, $firstname, $passwd, $passwdConfirm, "Echec de l'inscription");
+				}
+			}
+		}else{
+			$this->errorFlashCreatorRegister($pseudo, $surname, $firstname, $passwd, $passwdConfirm, "Echec de l'inscription");
+		}
+	}
 }
