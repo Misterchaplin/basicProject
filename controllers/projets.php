@@ -10,7 +10,8 @@ class projets extends BaseController{
 		{
 			commonUtils::backTo();
 		}
-		else {
+		else 
+		{
 			$this->loadView("vHeader");
 			$aProjet = DAO::getOne("Projet", $param);
 			$listTaches = DAO::getAll("Tache", "idprojet=".$param);
@@ -42,6 +43,7 @@ class projets extends BaseController{
 											 	"project" => $aProjet
 											)
 			);
+			commonUtils::loadJs("jsMain");
 			$this->loadView("vFooter");
 		}
 	}
@@ -127,6 +129,72 @@ class projets extends BaseController{
 	
 	
 	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	/** :::::::::::::::::::::::::: GESTION PROJET ::::::::::::::::::::::::::::::::::: **/
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	
+	
+	public function gestion($idProjet)
+	{
+		if(empty($_SESSION['membre']))
+		{
+			commonUtils::backTo();
+		}
+		else
+		{
+			$projet = DAO::getOne("Projet", "id = ".$idProjet);
+			if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+			{
+				$this->loadView("vHeader");
+				$this->loadView("form/vManageProject", $projet);
+				$this->loadView("vFooter");
+			}
+			else
+			{
+				commonUtils::backTo();
+			}	
+		}
+	}
+	
+	public function deleteProj($idProjet){
+		if(empty($_SESSION['membre']))
+		{
+			commonUtils::backTo();
+		}
+		else
+		{
+			if($idProjet != null)
+			{
+				$projet = DAO::getOne("Projet", "id = ".$idProjet);
+				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+				{
+					$delete = DAO::delete($projet);
+					if($delete)
+					{
+						commonUtils::flash( "resultSupprProjet", "Projet supprimé !", "flash fSuccess");
+						commonUtils::backTo();
+					}
+					else
+					{
+						commonUtils::flash( "resultSupprProjet", "Erreur lors de la suppresion du projet !", "flash fError"); // création d'un message flash d'échec
+						commonUtils::backTo("projets/gestion/".$idProjet);
+					}
+				}
+				else
+				{
+					commonUtils::backTo();
+				}	
+			}
+			else
+			{
+				commonUtils::flash( "resultSupprProjet", "Identificaiton du projet impossible !", "flash fError"); // création d'un message flash d'échec
+				commonUtils::backTo();
+			}			
+		}
+	}
+	
+	
+	
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
 	/** :::::::::::::::::::::::::: AJOUT TASKER ::::::::::::::::::::::::::::::::::: **/
 	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
 	
@@ -183,12 +251,8 @@ class projets extends BaseController{
 				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
 				{
 					//$user = DAO::getOne("Utilisateur", "id = ".$_POST['userSelected']);
-					$newObjAssocier = new Associer($projet->getId(),$_POST['userSelected']);
-					var_dump($newObjAssocier);
+					$newObjAssocier = new Associer($projet->getId(),$_POST['userSelected']);				
 					$insert = DAO::insert($newObjAssocier);
-					echo "lol";
-					var_dump($newObjAssocier);
-					die();
 					commonUtils::flash( "resultAjoutTaskeur", "Tâskeur ajouté au projet !", "flash fSuccess"); // création d'un message flash de réussite
 					commonUtils::backTo("projets/afficher/".$idProjet);
 				}

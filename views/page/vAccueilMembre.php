@@ -1,6 +1,7 @@
 <?php
 commonUtils::flash("resultAjoutTache");
 commonUtils::flash("resultAjoutTaskeur");
+commonUtils::flash("resultSupprProjet");
 $lstResponsable = $data['lstProjectsResponsable'];
 $lstLies = $data['lstProjects']
 ?>
@@ -31,7 +32,7 @@ $lstLies = $data['lstProjects']
 					<tbody>
 		        	<?php 
 		        	foreach ($lstResponsable as $projet):?>
-						<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getId();?>'>
+						<tr class="jsRowClick" data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getId();?>'>
 							<td><?php echo $projet->getDesignation();?></td>
 							<td><?php echo $projet->getUtilisateur()?></td>
 							<td><?php echo commonUtils::translateDate($projet->getDatecreation());?></td>
@@ -70,7 +71,7 @@ $lstLies = $data['lstProjects']
 					<tbody>
         			<?php 
 		        	foreach ($lstLies as $projet):?>
-						<tr class='clickable-row' data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getProjet()->getId();?>'>							
+						<tr class="jsRowClick" data-href='<?php echo $GLOBALS['siteUrl'];?>projets/afficher/<?php echo $projet->getProjet()->getId();?>'>							
 							<td><?php echo $projet->getProjet()->getDesignation();?></td>
 							<td><?php echo $projet->getProjet()->getUtilisateur()?></td>
 							<td><?php echo commonUtils::translateDate($projet->getProjet()->getDatecreation());?></td>

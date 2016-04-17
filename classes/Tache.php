@@ -57,7 +57,9 @@ class Tache extends BaseObject{
 		return $realiser;
 	}
 	
-	
+	public function toString(){
+		return $this->designation;
+	}
 	
 	
 }

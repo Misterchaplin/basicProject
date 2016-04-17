@@ -4,6 +4,78 @@ class taches extends BaseController{
 	public function index(){
 		commonUtils::backTo();
 	}
+	
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	/** :::::::::::::::::::::::::: GESTION TACHE ::::::::::::::::::::::::::::::::::: **/
+	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
+	
+	public function gestion($idProjet, $idTache)
+	{
+		if(empty($_SESSION['membre']))
+		{
+			commonUtils::backTo();
+		}
+		else
+		{
+			try
+			{
+				$projet = DAO::getOne("Projet", "id = ".$idProjet);
+				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+				{
+					$tache = DAO::getOne("Tache", "id = ".$idTache);
+					$this->loadView("vHeader");
+					$this->loadView("form/vManageTask", array("tache" => $tache, "projet" => $projet));
+					$this->loadView("vFooter");
+				}
+				else
+				{
+					commonUtils::backTo();
+				}
+			}
+			catch(Exception $ex)
+			{
+				commonUtils::backTo();
+			}
+		}
+	}
+	
+	public function deleteTask($idProjet, $idTache){
+		if(empty($_SESSION['membre']))
+		{
+			commonUtils::backTo();
+		}
+		else
+		{
+			try
+			{
+				$projet = DAO::getOne("Projet", "id = ".$idProjet);
+				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+				{
+					$tache = DAO::getOne("Tache", "id = ".$idTache);
+					$delete = DAO::delete($tache);
+					if($delete)
+					{
+						commonUtils::flash( "resultSupprTache", "Tâche supprimée !", "flash fSuccess");
+						commonUtils::backTo("projets/afficher/".$idProjet);
+					}
+					else
+					{
+						commonUtils::flash( "resultSupprTache", "Erreur lors de la suppresion de la tâche !", "flash fError"); // création d'un message flash d'échec
+						commonUtils::backTo("taches/gestion/".$idProjet."/".$idTache);
+					}
+				}
+				else
+				{
+					commonUtils::backTo();
+				}
+			}
+			catch(Excepyion $ex)
+			{
+				commonUtils::backTo();
+			}
+		}
+	}
+	
 
 	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
 	/** :::::::::::::::::::::::::: AJOUT TACHE ::::::::::::::::::::::::::::::::::: **/

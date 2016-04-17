@@ -3,11 +3,20 @@
 	commonUtils::flash("resultAjoutProjet");
 	commonUtils::flash("resultAjoutTache");
 	commonUtils::flash("resultAjoutTaskeur");
+	commonUtils::flash("resultSupprProjet");
+	commonUtils::flash("resultSupprTache");
 	$obj = $data['project'];
 	$na = $data["na"];
 	$af = $data['af'];
 	$ec = $data['ec'];
 	$te = $data['te'];
+	$responsabeProjet = false;
+	$classRowTask = "";
+	if($obj->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+	{
+		$responsabeProjet = true;
+		$classRowTask = "jsRowClick";
+	}
 ?>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
@@ -20,7 +29,7 @@
 					</a>
 				</li>
 			<?php 
-			if($obj->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+			if($responsabeProjet)
 			{
 			?>
 				<li>
@@ -33,6 +42,12 @@
 					<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/add.png" alt="ICON ADD TASKEUR"/>
 					<a href="<?php echo $GLOBALS["siteUrl"]?>projets/formulaireAjoutTaskeur/<?php echo $obj->getId();?>">
 						<span>Ajouter un taskeur au projet</span>
+					</a>
+				</li>
+				<li>
+					<img src="<?php echo $GLOBALS["siteUrl"]?>img/icon/gear.png" alt="ICON gestion projet"/>
+					<a href="<?php echo $GLOBALS["siteUrl"]?>projets/gestion/<?php echo $obj->getId();?>">
+						<span>Gérer le projet</span>
 					</a>
 				</li>
 			<?php 
@@ -64,6 +79,7 @@
 </div>
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
 <!-- NON ASSIGNEES -->
 
 	  <div class="panel panel-default">
@@ -78,7 +94,7 @@
 	    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 	      <div class="panel-body">
 	      <?php if(!empty($na)){?>
-		      <table class="table">
+		      <table class="table table-hover">
 					<thead>
 						<tr>							
 							<th>Libellé</th>
@@ -89,7 +105,7 @@
 					<tbody>
 		        	<?php 
 		        	foreach ($na as $item):?>
-						<tr>
+						<tr class="<?php echo $classRowTask;?>" data-href="<?php echo $GLOBALS['siteUrl'];?>taches/gestion/<?php echo $obj->getId()."/".$item->getId();?>">
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
 							<td><a class="btnAction" href="<?php echo $GLOBALS['siteUrl']?>projets/attribution/<?php echo $item->getId();?>/<?php echo $obj->getId();?>/1">Je m'en occupe</a>
@@ -118,7 +134,7 @@
 	<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
     	<div class="panel-body">
     	  <?php if(!empty($af)){?>
-      		<table class="table">
+      		<table class="table table-hover">
 				<thead>
 					<tr>							
 						<th>Libellé</th>
@@ -130,7 +146,7 @@
 				<tbody>
 	    			 <?php 
 	        		foreach ($af as $item):?>
-					<tr>
+					<tr class="<?php echo $classRowTask;?>" data-href="<?php echo $GLOBALS['siteUrl'];?>taches/gestion/<?php echo $obj->getId()."/".$item->getId();?>">
 						<td><?php echo $item->getDesignation();?></td>
 						<td><?php echo $item->getDescription()?></td>
 						<td><?php echo $item->getRealiser()->getUtilisateur();?></td>
@@ -162,7 +178,7 @@
 	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 	      <div class="panel-body">
         	<?php if(!empty($ec)){?>
-		      <table class="table">
+		      <table class="table table-hover">
 					<thead>
 						<tr>							
 							<th>Libellé</th>
@@ -174,7 +190,7 @@
 					<tbody>
 		        	<?php 
 		        	foreach ($ec as $item):?>
-						<tr>
+						<tr class="<?php echo $classRowTask;?>" data-href="<?php echo $GLOBALS['siteUrl'];?>taches/gestion/<?php echo $obj->getId()."/".$item->getId();?>">
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
 							<td><?php echo $item->getRealiser()->getUtilisateur();?></td>
@@ -205,7 +221,7 @@
 	    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 	      <div class="panel-body">
 	        <?php if(!empty($te)){?>
-		      <table class="table">
+		      <table class="table table-hover">
 					<thead>
 						<tr>							
 							<th>Libellé</th>
@@ -216,7 +232,7 @@
 					<tbody>
 		        	<?php 
 		        	foreach ($te as $item):?>
-						<tr>
+						<tr class="<?php echo $classRowTask;?>" data-href="<?php echo $GLOBALS['siteUrl'];?>taches/gestion/<?php echo $obj->getId()."/".$item->getId();?>">
 							<td><?php echo $item->getDesignation();?></td>
 							<td><?php echo $item->getDescription()?></td>
 							<td><?php echo $item->getRealiser()->getUtilisateur();?></td>

@@ -91,7 +91,6 @@ class accueil extends BaseController {
 	}
 	
 	public function inscrireMembre(){
-		var_dump($_POST);
 		$pseudo = $_POST['pseudo'];
 		$surname = $_POST['surname'];
 		$firstname = $_POST['firstname'];
@@ -99,7 +98,6 @@ class accueil extends BaseController {
 		$passwdConfirm = $_POST['passwdConfirm'];
 		$data =array($pseudo, $surname,	$firstname,	$passwd, $passwdConfirm);
 		$checkRegister = true;
-		//var_dump(count($data));
 		for($i=0; $i<5; $i++){
 			if(strlen($data[$i])==0){
 				$checkRegister=false;

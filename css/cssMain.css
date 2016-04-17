@@ -107,7 +107,7 @@ input.submit:hover{
 	margin:auto;
 }
 
-#formRelancer input{
+.delete{
 	font-size:17px;
 	color:white;
 	padding:15px;
@@ -253,10 +253,6 @@ a.defaultAccordion{
 
 .row{
 	margin : 0;
-}
-
-table > tbody > tr:hover{
-	//background:whitesmoke;
 }
 
 .table-hover > tbody > tr:hover{

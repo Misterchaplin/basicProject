@@ -34,7 +34,7 @@ require_once 'technics/Gui.php';
 			{
 		?>
 				<form id="formRelancer" action="<?php echo $GLOBALS["siteUrl"]?>accueil/deconnexionMembre" method="post">					
-					<input type="submit" value="<?php echo $_SESSION['membre'];?>"/>
+					<input class="delete" type="submit" value="<?php echo $_SESSION['membre'];?>"/>
 				</form>
 		<?php
 			}
