@@ -76,6 +76,49 @@ class taches extends BaseController{
 		}
 	}
 	
+	
+	public function updateTache($tache, $project){
+	if(!empty($_POST['designation']) && !empty($_POST['description'])&& $tache != null && $project != null)
+		{
+			try
+			{	$projet = DAO::getOne("Projet", "id = ".$project);
+				if($projet->getUtilisateur()->getId() == $_SESSION['membre']->getId())
+				{
+					$tache = DAO::getOne("Tache", "id = ".$tache);
+					$tache->setDescription(htmlspecialchars($_POST['description']));
+					$tache->setDesignation(htmlspecialchars($_POST['designation']));
+					$update = DAO::update($tache);
+					if($update){
+						commonUtils::flash( "resultUpdateTache", "Tâche modifiée !", "flash fSuccess"); // création d'un message flash de réussite
+						commonUtils::backTo("projets/afficher/".$project);
+					}else{
+						commonUtils::flash( "resultUpdateTache", "Erreur lors de la modification de la tâche !", "flash fError"); // création d'un message flash d'échec
+						commonUtils::backTo("projets/gestion/".$project);
+					}
+				}
+				else
+				{
+					commonUtils::flash( "resultUpdateTache", "C'est pas bien Mr Brutus !", "flash fError"); // création d'un message flash d'échec
+					commonUtils::backTo();
+				}
+			}
+			catch(Exception $e)
+			{
+				commonUtils::flash( "resultUpdateTache", "Erreur lors de la modification de la tâche !", "flash fError"); // création d'un message flash d'échec
+				commonUtils::flash("descrUpdateTache", $_POST['description']);
+				commonUtils::flash("desiUpdateTache", $_POST['designation']);
+				commonUtils::backTo("taches/gestion/$project/$tache");
+			}
+		}
+		else
+		{
+			commonUtils::flash( "resultUpdateTache", "Donnees manquantes !", "flash fError"); // création d'un message flash d'échec
+			commonUtils::flash("descrUpdateTache", $_POST['description']);
+			commonUtils::flash("desiUpdateTache", $_POST['designation']);
+			commonUtils::backTo("taches/gestion/$project/$tache");
+		}
+	}
+	
 
 	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
 	/** :::::::::::::::::::::::::: AJOUT TACHE ::::::::::::::::::::::::::::::::::: **/

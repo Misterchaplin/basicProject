@@ -1,4 +1,5 @@
-<?php commonUtils::flash("resultSupprTache");?>
+<?php commonUtils::flash("resultSupprTache");
+	  commonUtils::flash("resultUpdateTache");?>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
 		<div id="bs-example-navbar-collapse-7">
@@ -30,8 +31,16 @@
 	<h1>Modification de la tâche : <?php echo $data['tache'];?></h1>
 </div>
 
-A toi de jouer ly-char !
 
+<form action="<?php echo $GLOBALS['siteUrl']?>taches/updateTache/<?php echo $data['tache']->getId();?>/<?php echo $data['tache']->getProjet()->getId();?>" id="frmUpdateTache" name="frmUpdateTache" method="post">
+	<div class="form-group">
+	    <label for="designation">Designation de la tâche</label>
+	    <input type="text" class="form-control" name="designation" id="designation" value="<?php commonUtils::flash("desiUpdateTache","","valInput");?>" placeholder="Designation de la tâche" required>
+	    <label for="description">Description de la tâche</label>
+	    <input type="text" class="form-control" name="description" id="description" value="<?php commonUtils::flash("descrUpdateTache","","valInput");?>" placeholder="Description de la tâche" required>
+	    <input class="submit" class="btn btn-default" value="Modifier la tâche" name="submit" type="submit"/>
+	</div>
+</form>
 
 <div class="divTitle">
 	<h1>Suppression de la tâche : <?php echo $data['tache'];?></h1>

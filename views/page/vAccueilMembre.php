@@ -1,5 +1,6 @@
 <?php
 commonUtils::flash("resultAjoutTache");
+commonUtils::flash("resultUpdateTache");
 commonUtils::flash("resultAjoutTaskeur");
 commonUtils::flash("resultSupprProjet");
 $lstResponsable = $data['lstProjectsResponsable'];

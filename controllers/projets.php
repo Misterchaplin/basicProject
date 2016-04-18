@@ -193,6 +193,38 @@ class projets extends BaseController{
 	}
 	
 	
+	public function updateProj($idProjet){
+		if(!empty($_POST['designation']) && !empty($_POST['description']) && $idProjet!= null)
+		{	
+			$projet = DAO::getOne("Projet", "id = ".$idProjet);
+			try
+			{
+				$projet->setDescription(htmlspecialchars($_POST['description']));
+				$projet->setDesignation(htmlspecialchars($_POST['designation']));
+				$update = DAO::update($projet);
+				if($update){
+					commonUtils::flash( "resultUpdateProj", "Projet modifié !", "flash fSuccess"); // création d'un message flash de réussite
+					commonUtils::backTo("projets/afficher/".$projet->getId());
+				}	
+			}
+			catch(Exception $e)
+			{
+				commonUtils::flash( "resultUpdateProj", "Erreur lors de la modification du projet !", "flash fError"); // création d'un message flash d'échec
+				commonUtils::flash("descrUpdateProj", $_POST['description']);
+				commonUtils::flash("desiUpdateProj", $_POST['designation']);
+				commonUtils::backTo("projets/gestion/$idProjet");
+			}
+		}
+		else
+		{
+			commonUtils::flash( "resultUpdateProj", "Donnees manquantes !", "flash fError"); // création d'un message flash d'échec
+			commonUtils::flash("descrUpdateProj", $_POST['description']);
+			commonUtils::flash("desiUpdateProj", $_POST['designation']);
+			commonUtils::backTo("projets/gestion/$idProjet");
+		}
+	}
+	
+	
 	
 	/** ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: **/
 	/** :::::::::::::::::::::::::: AJOUT TASKER ::::::::::::::::::::::::::::::::::: **/
