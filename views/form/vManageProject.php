@@ -1,5 +1,6 @@
 <?php commonUtils::flash("resultSupprProjet");
-      commonUtils::flash("resultUpdateProj");?>
+ commonUtils::flash("resultUpdateProj");
+ ?>
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
 		<div id="bs-example-navbar-collapse-7">
@@ -33,11 +34,11 @@
 
 <form action="<?php echo $GLOBALS['siteUrl']?>projets/updateProj/<?php echo $data->getId();?>" id="frmUpdateProj" name="frmUpdateProj" method="post">
 	<div class="form-group">
-		<!-- Les champs IdUtilisateur et DateCreation sont ajoutés automatiquement par le code -->
+	
 	    <label for="designation">Designation du projet</label>
-	    <input maxlength="30" type="text" class="form-control" name="designation" id="designation" value="<?php commonUtils::flash("desiUpdateProj","","valInput");?>" placeholder="Designation du projet" required>
+	    <input maxlength="30" type="text" class="form-control" name="designation" id="designation" value="<?php echo $data;?>" placeholder="Designation du projet" required>
 	    <label for="description">Description du projet</label>
-	    <input type="text" class="form-control" name="description" id="description" value="<?php commonUtils::flash("descrUpdateProj","","valInput");?>" placeholder="Description du projet" required>
+	    <input type="text" class="form-control" name="description" id="description" value="<?php echo $data->getDescription();?>" placeholder="Description du projet" required>
 	    <input class="submit" class="btn btn-default" value="Modifier le projet" name="submit" type="submit"/>    
 	</div>
 </form>
