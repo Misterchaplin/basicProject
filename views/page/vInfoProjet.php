@@ -5,6 +5,8 @@
 	commonUtils::flash("resultAjoutTaskeur");
 	commonUtils::flash("resultSupprProjet");
 	commonUtils::flash("resultSupprTache");
+	commonUtils::flash("resultUpdateProj");
+	commonUtils::flash("resultUpdateTache");
 	$obj = $data['project'];
 	$na = $data["na"];
 	$af = $data['af'];
