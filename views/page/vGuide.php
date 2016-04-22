@@ -14,9 +14,9 @@
 </nav>
 
 <div class="divTitle">
-	<h1>Guide de gestion (v 1.0-2016)</h1>
-
-	Afin de comprendre le fonctionnement de la gestion de projet et ainsi le fonctionnement d'easyProject, vous pouvez consulter le guide en pièce jointe.
-
-	<a href="/views/easyProject.pdf">Guide easyProject</a>
+	<h1>Guide de gestion (v 1.0-2016)</h1>	
+</div>
+<div class="divTitle">
+	<p>Afin de comprendre le fonctionnement de la gestion de projet et ainsi le fonctionnement d'easyProject, vous pouvez consulter le guide en pièce jointe.</p>
+	<a href="<?php echo $GLOBALS['siteUrl']?>views/easyProject.pdf">Guide easyProject</a>
 </div>
