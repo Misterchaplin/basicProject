@@ -12,7 +12,6 @@
 		</div>
 	</div>
 </nav>
-
 <div class="divTitle">
 	<h1>Guide de gestion (v 1.0-2016)</h1>	
 </div>
